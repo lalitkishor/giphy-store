@@ -18,7 +18,6 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
-  console.log(state, action)
   switch (action.type) {
     case LOAD_GIFS.INIT:
       return { ...state, loading: true };

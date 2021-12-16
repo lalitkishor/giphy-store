@@ -3,3 +3,18 @@
     display: block;
     position: relative;
 }
+.pauseButton{
+    position: absolute;
+    top:0;
+    right: 0;
+    z-index: 99;
+}
+
+.button {
+    border: none;
+    background: red;
+    color: white;
+    cursor: pointer;
+    padding: 4px 15px;
+    border-radius: 3px;
+}

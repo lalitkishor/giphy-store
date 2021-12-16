@@ -10,7 +10,6 @@ function Header(){
     const optimizeSearch = debounce(search, 300);
 
     const handleGifChange = (e)=>{
-        console.log("running")
         const input = e.currentTarget.value;
         dispatch(resetGifsConfig());
         if(input){ dispatch(optimizeSearch(input));}
@@ -23,7 +22,7 @@ function Header(){
         </div>
         <input className="input" onChange={handleGifChange} placeholder="search gifs ..."/>
         <label className="switch">
-            <input type="checkbox" onChange={(e)=>console.log(e)||themeToggle()} checked={type=='dark'? true:false}/>
+            <input type="checkbox" onChange={themeToggle} checked={type=='dark'? true:false}/>
             <span className="slider round"></span>
         </label>
     </div>

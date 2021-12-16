@@ -31,7 +31,6 @@ function TrendingPage() {
   const loader = useRef(null);
 
   useEffect(() => {
-      console.log("here")
       isSearchPage ? dispatch(search()):
       dispatch(loadTrendingGifs(isDesktop));
   }, [page, isDesktop]);
@@ -77,14 +76,12 @@ function TrendingPage() {
           className="giphyContainer"
           style={isDesktop ? { marginLeft: 150 } : { marginLeft: 25 }}
         >
-          {gifList.map(({ url, id, link, ratio }, index) => (
+          {gifList.map(( gifObj, index) => (
             <Card
-              key={id}
-              url={url}
+              key={gifObj.id}
               index={index}
-              link={link}
               gifList={gifList}
-              ratio={ratio}
+              gifObj={gifObj}
               setLoaderHeight={setLoaderHeight}
               layoutWidth={layoutWidth}
               layoutColumn={layoutColumn}

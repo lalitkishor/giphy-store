@@ -19,6 +19,7 @@ export const loadTrendingGifs = (isDesktop) => (dispatch, getState) => {
         id: gif.id,
         link: gif.url,
         ratio: ratio,
+        title : gif.title,
         ...fixed_width,
       };
     });
@@ -41,6 +42,7 @@ export const search = (searchInput) => (dispatch, getState) => {
         id: gif.id,
         link: gif.url,
         ratio: ratio,
+        title : gif.title,
         ...fixed_width,
       };
     });

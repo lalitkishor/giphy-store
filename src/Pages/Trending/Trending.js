@@ -33,7 +33,7 @@ function TrendingPage() {
   useEffect(() => {
       isSearchPage ? dispatch(search()):
       dispatch(loadTrendingGifs(isDesktop));
-  }, [page, isDesktop]);
+  }, [page, isDesktop, isSearchPage]);
 
   useEffect(() => {
     if (isDesktop) {

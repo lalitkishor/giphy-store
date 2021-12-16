@@ -5,49 +5,32 @@ import React, {
   useRef,
   useContext,
 } from "react";
-import { GiphyFetch } from "@giphy/js-fetch-api";
 import Card from "../Components/Card";
 import useDevice from "../Hooks/useDevice";
 import useDeviceWidth from "../Hooks/useDeviceWidth";
 import "./tredning.css";
 import ThemeContext from "../themeContext";
-
-const gf = new GiphyFetch("sXpGFDGZs0Dv1mmNFvYaGUvYwKX0PWIh");
-
-const perPageGif = 10;
+import { useDispatch, useSelector } from "react-redux";
+import {loadTrendingGifs, loadMoreGifs} from"../actions/action";
 
 function TrendingPage() {
-  const { isMobile, isDesktop, isTab } = useDevice();
-  const [gifList, setGifList] = useState([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [loaderHeight, setLoaderHeight] = useState(0);
+  
   const [layoutWidth, setLayoutWidth] = useState(0);
   const [layoutColumn, setLayoutColumn] = useState(1);
+  const [loaderHeight, setLoaderHeight] = useState(0);
+  const { isMobile, isDesktop, isTab } = useDevice();
   const windowWidth = useDeviceWidth();
+
+  const loading = useSelector((state)=>state.loading);
+  const page = useSelector((state)=>state.page);
+  const gifList = useSelector((state)=>state.gifList);
+  
   const {theme} = useContext(ThemeContext);
+  const dispatch = useDispatch();
   const loader = useRef(null);
 
   useEffect(() => {
-    setLoading(true);
-    const fetchGifs = (offset) =>
-      gf.trending({ offset, limit: page * perPageGif });
-    fetchGifs().then(({ data }) => {
-      const gifs = data.map((gif) => {
-        const fixed_width = isDesktop
-          ? gif.images.fixed_width
-          : gif.images.fixed_width_small;
-        const ratio = fixed_width.width / fixed_width.height;
-        return {
-          id: gif.id,
-          link: gif.url,
-          ratio: ratio,
-          ...fixed_width,
-        };
-      });
-      setGifList(gifs);
-      setLoading(false);
-    });
+      dispatch(loadTrendingGifs(isDesktop));
   }, [page, isDesktop]);
 
   useEffect(() => {
@@ -70,7 +53,7 @@ function TrendingPage() {
   const handleObserver = useCallback((entries) => {
     const target = entries[0];
     if (target.isIntersecting) {
-      setPage((prev) => prev + 1);
+      dispatch(loadMoreGifs());
     }
   }, []);
 

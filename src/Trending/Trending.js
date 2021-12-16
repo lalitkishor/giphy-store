@@ -11,7 +11,7 @@ import useDeviceWidth from "../Hooks/useDeviceWidth";
 import "./tredning.css";
 import ThemeContext from "../themeContext";
 import { useDispatch, useSelector } from "react-redux";
-import {loadTrendingGifs, loadMoreGifs} from"../actions/action";
+import {loadTrendingGifs, loadMoreGifs, search} from"../actions/action";
 
 function TrendingPage() {
   
@@ -24,12 +24,15 @@ function TrendingPage() {
   const loading = useSelector((state)=>state.loading);
   const page = useSelector((state)=>state.page);
   const gifList = useSelector((state)=>state.gifList);
-  
+  const isSearchPage = useSelector((state)=>state.isSearchPage);
+
   const {theme} = useContext(ThemeContext);
   const dispatch = useDispatch();
   const loader = useRef(null);
 
   useEffect(() => {
+      console.log("here")
+      isSearchPage ? dispatch(search()):
       dispatch(loadTrendingGifs(isDesktop));
   }, [page, isDesktop]);
 
@@ -64,6 +67,8 @@ function TrendingPage() {
     const observer = new IntersectionObserver(handleObserver, option);
     loader.current && observer.observe(loader.current);
   }, [handleObserver]);
+
+
 
   return (
     <div style={{ height: `${loaderHeight + 500}px`, width: `${windowWidth}px` }}>

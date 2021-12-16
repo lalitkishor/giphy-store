@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import IndexRoute from './IndexRouter';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <IndexRoute />
   </React.StrictMode>,
   document.getElementById('root')
 );

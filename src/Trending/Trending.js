@@ -10,6 +10,7 @@ import Card from "../Components/Card";
 import useDevice from "../Hooks/useDevice";
 import useDeviceWidth from "../Hooks/useDeviceWidth";
 import "./tredning.css";
+import ThemeContext from "../themeContext";
 
 const gf = new GiphyFetch("sXpGFDGZs0Dv1mmNFvYaGUvYwKX0PWIh");
 
@@ -24,6 +25,7 @@ function TrendingPage() {
   const [layoutWidth, setLayoutWidth] = useState(0);
   const [layoutColumn, setLayoutColumn] = useState(1);
   const windowWidth = useDeviceWidth();
+  const {theme} = useContext(ThemeContext);
   const loader = useRef(null);
 
   useEffect(() => {
@@ -82,7 +84,7 @@ function TrendingPage() {
 
   return (
     <div style={{ height: `${loaderHeight + 500}px`, width: `${windowWidth}px` }}>
-      <div className="wrapper" >
+      <div className="wrapper" style={theme}>
         <div
           className="giphyContainer"
           style={isDesktop ? { marginLeft: 150 } : { marginLeft: 25 }}

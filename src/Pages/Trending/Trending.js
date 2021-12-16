@@ -5,13 +5,13 @@ import React, {
   useRef,
   useContext,
 } from "react";
-import Card from "../Components/Card";
-import useDevice from "../Hooks/useDevice";
-import useDeviceWidth from "../Hooks/useDeviceWidth";
+import Card from "../../Components/Card";
+import useDevice from "../../Hooks/useDevice";
+import useDeviceWidth from "../../Hooks/useDeviceWidth";
 import "./tredning.css";
-import ThemeContext from "../themeContext";
+import ThemeContext from "../../themeContext";
 import { useDispatch, useSelector } from "react-redux";
-import {loadTrendingGifs, loadMoreGifs, search} from"../actions/action";
+import {loadTrendingGifs, loadMoreGifs, search} from"../../actions/action";
 
 function TrendingPage() {
   

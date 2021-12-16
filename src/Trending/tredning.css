@@ -1,0 +1,22 @@
+.giphyContainer{
+    margin: auto;
+    position: relative;
+}
+
+.giphyLink{
+    position: absolute;
+}
+
+.loader{
+    position: absolute;
+    margin-top: 450px;
+}
+
+.loaderRef {
+    position: absolute;
+}
+
+.wrapper{
+    height: 100%;
+    min-height: 100vh;
+}

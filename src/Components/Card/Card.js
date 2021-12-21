@@ -27,23 +27,20 @@ function Card({ index, gifList, gifObj, setLoaderHeight, layoutWidth, layoutColu
         }
    },[]);
 
-   const toggle = (e)=>{
-    e.preventDefault();
-    setPlay(false);
-    if(play == false) {
-        setPlay(true);
-        return;
-    }
-    
-    setTimeout(()=>{
+   useEffect(()=>{
+    if(!play){
         let ctx = canvasRef.current.getContext('2d');
         let img = new Image();
         img.onload = function(e) {
         ctx.drawImage(img, 0, 0,layoutWidth,(layoutWidth/ratio));
         };
         img.src = url;
-    },5)
-    return false;
+    }
+   },[play]);
+
+   const toggle = (e)=>{
+    e.preventDefault();
+    setPlay(val=>!val);
    }
 
    return <a  href={link} target="_blank" className="giphyLink" rel="noreferrer"
